@@ -8,7 +8,7 @@
         modal: true,
         buttons: {
             "Create": createNewGame,
-            Cancel: function () {
+            "Cancel": function () {
                 dialog.dialog("close");
             }
         },

@@ -2,10 +2,12 @@ package com.harshpal.scorer.bowling;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import com.harshpal.scorer.bowling.game.Frame;
 import com.harshpal.scorer.bowling.game.Game;
+import com.harshpal.scorer.bowling.scoring.GameNotFoundException;
 import com.harshpal.scorer.bowling.scoring.GameOverException;
 import com.harshpal.scorer.bowling.scoring.PinLimitExceededException;
 import com.harshpal.scorer.bowling.scoring.ScoringService;
@@ -53,6 +55,22 @@ public class ScoringServiceImplTest {
         scoringService.addScore(game.getId(), -2);
     }
 
+    @Test(expected = GameOverException.class)
+    public void shouldNotAllowAddScoreToCompletedGame() {
+        //given
+        Game game = setupGameWithStrikes(12);
+
+        //when
+        scoringService.addScore(game.getId(), 10);
+    }
+
+    @Test(expected = GameNotFoundException.class)
+    public void shouldRejectUnknownGames() {
+
+        //when
+        scoringService.addScore("random", 10);
+    }
+
     @Test
     public void shouldCorrectlyCalculateBonusForStrike() {
         //given
@@ -70,14 +88,21 @@ public class ScoringServiceImplTest {
         assertThat(second.getExtra()).isEqualTo(8);
     }
 
-    @Test(expected = GameOverException.class)
-    public void shouldNotAllowAddScoreToCompletedGame() {
+    @Test
+    public void perfectGame() {
         //given
         Game game = setupGameWithStrikes(12);
 
-        //when
-        scoringService.addScore(game.getId(), 10);
+        //then
+        assertThat(game.isComplete()).isTrue();
+        Integer totalScore = game.getFrames()
+                .stream()
+                .mapToInt(frame -> frame.getFirst() + Optional.ofNullable(frame.getSecond()).orElse(0) + frame
+                        .getExtra())
+                .sum();
+        assertThat(totalScore).isEqualTo(300);
     }
+
 
     @Test
     public void shouldAllowThreeRollsInLastFrame_ifStrikeOrSpare() {
