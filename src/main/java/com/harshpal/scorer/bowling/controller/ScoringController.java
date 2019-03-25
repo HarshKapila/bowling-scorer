@@ -5,7 +5,7 @@ import javax.validation.Valid;
 import com.harshpal.scorer.bowling.scoring.ScoringService;
 import com.harshpal.scorer.bowling.view.AddScoreRequest;
 import com.harshpal.scorer.bowling.view.CreateGameRequest;
-import com.harshpal.scorer.bowling.view.GameResponse;
+import com.harshpal.scorer.bowling.view.GameView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +21,13 @@ public class ScoringController {
     private ScoringService scoringService;
 
     @PostMapping("create")
-    public GameResponse create(@Valid @RequestBody CreateGameRequest createGameRequest) {
-        return GameResponse.fromGame(scoringService.createGame(createGameRequest.getPlayerName()));
+    public GameView create(@Valid @RequestBody CreateGameRequest createGameRequest) {
+        return GameView.fromGame(scoringService.createGame(createGameRequest.getPlayerName()));
     }
 
     @PatchMapping("score/add")
-    public GameResponse addScore(@Valid @RequestBody AddScoreRequest addScoreRequest) {
-        return GameResponse.fromGame(
+    public GameView addScore(@Valid @RequestBody AddScoreRequest addScoreRequest) {
+        return GameView.fromGame(
                 scoringService.addScore(addScoreRequest.getGameId(), addScoreRequest.getPinsHit()));
     }
 

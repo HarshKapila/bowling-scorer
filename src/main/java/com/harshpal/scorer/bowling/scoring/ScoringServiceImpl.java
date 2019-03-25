@@ -81,7 +81,7 @@ public class ScoringServiceImpl implements ScoringService {
         }
     }
 
-    private static int getMaxPossibleHits(Frame currentFrame) {
+    private int getMaxPossibleHits(Frame currentFrame) {
         if (currentFrame.isFirstChance() || currentFrame.isStrike() || currentFrame.isSpare()) {
             return MAX_HIT;
         } else {
