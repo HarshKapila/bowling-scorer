@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>Bowling Scoresheet</title>
+    <link href='/css/app.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<body>
+
+<h1>Bowling Scoresheet</h1>
+
+<div id='buttons' class='buttons'></div>
+
+<div id='scoresheet'>
+    <table id='scoresheetTable' class='scoresheet' cellpadding='1' cellspacing='0'>
+        <tr>
+            <th colspan='6'>Name</th>
+            <th colspan='6'>1</th>
+            <th colspan='6'>2</th>
+            <th colspan='6'>3</th>
+            <th colspan='6'>4</th>
+            <th colspan='6'>5</th>
+            <th colspan='6'>6</th>
+            <th colspan='6'>7</th>
+            <th colspan='6'>8</th>
+            <th colspan='6'>9</th>
+            <th colspan='6'>10</th>
+        </tr>
+        <tr id="rollScore">
+            <td colspan='6' rowspan="2" id="name-holder"></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='3'></td>
+            <td colspan='2'></td>
+            <td colspan='2'></td>
+            <td colspan='2'></td>
+        </tr>
+        <tr id="frameTotal">
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+            <td colspan='6'></td>
+        </tr>
+    </table>
+</div>
+<div id="dialog-form" title="Create new game">
+
+    <form>
+        <fieldset>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-70px">
+        </fieldset>
+    </form>
+</div>
+<div id="controller">
+    <input id="pins-hit" class="number-input controls valid in-game" type="number" min="0" max="10" step="1" required="" placeholder="Pins hit">
+    <button id="hit" class="controls in-game">Hit Pins</button>
+    <button id="new-game" class="controls after-game">New game</button>
+</div>
+<div class="error-container">
+    <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+        <p id="error-message">
+            Sample ui-state-error style.
+        </p>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src='/js/app.js'></script>
+</html>

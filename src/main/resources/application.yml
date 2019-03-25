@@ -1,0 +1,6 @@
+#default profile
+spring:
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .html
