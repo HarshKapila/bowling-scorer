@@ -21,7 +21,7 @@ public class GameView {
     @JsonProperty
     private List<FrameView> frames;
 
-    public GameView(String gameId, String playerName, boolean complete,
+    private GameView(String gameId, String playerName, boolean complete,
             List<FrameView> frames) {
         this.gameId = gameId;
         this.playerName = playerName;
